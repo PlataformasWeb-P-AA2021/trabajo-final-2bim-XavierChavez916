@@ -22,18 +22,19 @@ public class Principal {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<PlanCelular> lista = new ArrayList();
         String nomArchivo = "planes.data";
-        EscrituraArchivoSecuencial archivo = new EscrituraArchivoSecuencial(nomArchivo);
+        EscrituraArchivoSecuencial archivo = new EscrituraArchivoSecuencial(nomArchivo);//para
 
         boolean salida = true;
         boolean bandera = true;
         int opcionIngreso;
         int ingresarMostrar;
         do {
-            LecturaArchivoSecuencial lectura = new LecturaArchivoSecuencial(nomArchivo);
+            LecturaArchivoSecuencial lectura = new LecturaArchivoSecuencial(nomArchivo);// 
             System.out.println("====EMPRESA TELEFONIA CELULAR====");
             System.out.printf("Eliga la opcion que desea:\n"
                     + "1.Ingresar Planes\n"
@@ -69,7 +70,7 @@ public class Principal {
                 String mar = sc.nextLine();
                 System.out.println("Ingrese el número del celular");
                 String num = sc.nextLine();
-
+                
                 System.out.println("Ingrese el modelo del celular");
                 String mod = sc.nextLine();
 
@@ -154,6 +155,7 @@ public class Principal {
                 for (int i = 0; i < lista.size(); i++) {
                     lista.get(i).establecerPagoMensual();
                 }
+                //Se registra todos los datos obtenidos
                 for (int i = 0; i < lista.size(); i++) {
                     archivo.establecerRegistro(lista.get(i));
                     archivo.establecerSalida();
@@ -173,71 +175,73 @@ public class Principal {
                     opcionIngreso = sc.nextInt();
                     lectura.establecerListaPlanes();
                     int datos = lectura.obtenerListaPlanes().size();
-
+                    lectura.establecerListaPlanes();// lee todo mi archico 
+                    
                     if (datos != 0) {
                         switch (opcionIngreso) {
                             case 1:
-
+                                int contador = 0;
                                 for (int i = 0; i < lectura.obtenerListaPlanes().size(); i++) {
+                                   
                                     String namePackage
                                             = lectura.obtenerListaPlanes().get(i).getClass().getName();
                                     if (namePackage.equals("paquete2.PlanPostPagoMinutos")) {
+                                         contador = contador +1;
                                         System.out.print("\tPLAN POST PAGO MINUTOS");
                                         System.out.println(lectura.obtenerListaPlanes().get(i));
-                                    } else {
-                                        bandera = false;
-                                    }
+                                    } 
                                 }
-                                if (bandera == false) {
+                                if (contador == 0) {
                                     System.out.println("No hay datos que mostrar");
 
                                 }
 
                                 break;
-                            case 2:
-                                for (int i = 0; i < lectura.obtenerListaPlanes().size(); i++) {
-                                    String namePackage = lectura.obtenerListaPlanes().get(i).getClass().getName();
-                                    if (namePackage.equals("paquete2.PlanPostPagoMegas")) {
+ 
+                        case 2:
+                            contador =0;
+                            for (int i = 0; i < lectura.obtenerListaPlanes().size(); i++) {
+                                String namePackage = lectura.obtenerListaPlanes().get(i).getClass().getName();
+                                if (namePackage.equals("paquete2.PlanPostPagoMegas")) {
                                         System.out.print("\tPLAN POST PAGO MEGAS");
                                         System.out.println(lectura.obtenerListaPlanes().get(i));
-                                    } else {
-                                        bandera = false;
-                                    }
+                                        contador = contador +1;
+                                    } 
                                 }
-                                if (bandera == false) {
+                                if (contador == 0) {
                                     System.out.println("No hay datos que mostrar");
 
                                 }
 
                                 break;
                             case 3:
-
-                                System.out.print("\tPLAN POST PAGO MINUTOS MEGAS\n");
+                                contador =0; 
+                                
                                 for (int i = 0; i < lectura.obtenerListaPlanes().size(); i++) {
                                     String namePackage = lectura.obtenerListaPlanes().get(i).getClass().getName();
                                     if (namePackage.equals("paquete2.PlanPostPagoMinutosMegas")) {
-                                        System.out.println(lectura.obtenerListaPlanes().get(i));
-                                    } else {
-                                        bandera = false;
-                                    }
+                                        System.out.print("\tPLAN POST PAGO MINUTOS MEGAS\n");
+                                        System.out.println(lectura.obtenerListaPlanes().get(i));   
+                                        contador = contador +1;
+                                    } 
+                                    
                                 }
-                                if (bandera == false) {
+                                if (contador == 0) {
                                     System.out.println("No hay datos que mostrar");
 
                                 }
                                 break;
                             case 4:
-
+                                 contador =0;
                                 for (int i = 0; i < lectura.obtenerListaPlanes().size(); i++) {
                                     String namePackage = lectura.obtenerListaPlanes().get(i).getClass().getName();
                                     if (namePackage.equals("paquete2.PlanPostPagoMinutosMegasEconomico")) {
                                         System.out.print("\tPLAN POST PAGO MINUTOS MEGAS ECONOMICO");
                                         System.out.println(lectura.obtenerListaPlanes().get(i));
-                                    } else {
-                                        bandera = false;
-                                    }
+                                        contador = contador +1;
+                                    } 
                                 }
-                                if (bandera == false) {
+                                if (contador == 0) {
                                     System.out.println("No hay datos que mostrar");
 
                                 }
@@ -247,6 +251,7 @@ public class Principal {
                                 System.out.println(lectura);
                                 break;
 
+                           
                             default:
                                 System.err.println("Eligio una opcion fuera del "
                                         + "rango(1-5)");
@@ -260,7 +265,7 @@ public class Principal {
                     salida = false;
                     archivo.cerrarArchivo();
                     lectura.cerrarArchivo();
-                    System.out.println("\u001B[34mGracias por registrarce");
+                    System.out.println("\u001B[34mGracias por registrarse");
                 } else {
                     System.err.println("Eligio una opcion fuera del "
                             + "rango(1-3)");

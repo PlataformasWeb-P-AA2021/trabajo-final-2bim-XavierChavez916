@@ -23,8 +23,8 @@ public class EscrituraArchivoSecuencial {
     public EscrituraArchivoSecuencial(String nombreArc) {
         nombreArchivo = nombreArc;
         establecerLista(); // obtener los valores (objetos)
-                                    // que tiene el archivo.
-        // System.out.println(obtenerListaProfesores().size());
+        // que tiene el archivo.
+        // System.out.println(obtenerLista().size());
         try // abre el archivo
         {
             salida = new ObjectOutputStream(

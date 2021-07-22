@@ -86,6 +86,7 @@ public class LecturaArchivoSecuencial {
             cadena = String.format("%s%d) === %s ===  %s\n", cadena, 
                     i+1, p.getClass().getSimpleName(), p);
         }
+        // mostramos el titulo1 addemas el nombre de la clase ademas del objeto por cada iteracion 
 
         return cadena;
     }
